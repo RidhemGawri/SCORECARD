@@ -1,7 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
-import '../../firebase_services/local_notification_services.dart';
+import '../../services/local_notification_services.dart';
+import '../result/result_view_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -63,40 +64,42 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  TextEditingController rollnumber = new TextEditingController();
+  TextEditingController rollnumber = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Center(child: Text('PUP CSE RESULT')),
+        title: const Center(child: Text('PUP CSE RESULT')),
         shadowColor: Colors.blueGrey,
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 70),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 70),
             child: TextField(
               controller: rollnumber,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder(),
-                  labelText: "  Enter Student's Rollnumber"),
+                  labelText: "  Enter Student's Roll-number"),
             ),
           ),
           ElevatedButton(
-            child: Text(
-              'Submit',
-              style: TextStyle(fontSize: 15.0),
-            ),
             style: ElevatedButton.styleFrom(
               shadowColor: Colors.blueGrey,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ResultViewScreen(),));
+            },
+            child: const Text(
+              'Submit',
+              style: TextStyle(fontSize: 15.0),
+            ),
           ),
         ],
       ),
