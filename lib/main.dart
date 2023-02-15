@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:resultproject/firebase_services/local_notification_services.dart';
-import 'package:resultproject/ui/splash_screen.dart';
+import 'package:resultproject/services/local_notification_services.dart';
+import 'package:resultproject/screens/auth/splash_screen.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
   print(message.data.toString());
