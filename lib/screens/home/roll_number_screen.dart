@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resultproject/screens/home/semester_screen.dart';
 
 import '../result/result_view_screen.dart';
 
@@ -36,7 +37,7 @@ class RollNumberScreen extends StatelessWidget {
               shadowColor: Colors.blueGrey,
             ),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ResultViewScreen(),));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllSem(),));
             },
             child: const Text(
               'Submit',

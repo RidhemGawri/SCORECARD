@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:resultproject/config/config.dart';
 import 'package:resultproject/screens/home/roll_number_screen.dart';
 
-class AllBranches extends StatelessWidget {
-  const AllBranches({Key? key}) : super(key: key);
+class AllBranchScreen extends StatelessWidget {
+  const AllBranchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
