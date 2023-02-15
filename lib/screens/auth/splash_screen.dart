@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resultproject/firebase_services/splash_services.dart';
+import 'package:resultproject/services/splash_services.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -9,7 +9,7 @@ class Splashscreen extends StatefulWidget {
 }
 
 class _SplashscreenState extends State<Splashscreen> {
-  splashServices splashscreen = splashServices();
+  SplashServices splashscreen = SplashServices();
   @override
   void initState() {
     // TODO: implement initState
@@ -18,7 +18,7 @@ class _SplashscreenState extends State<Splashscreen> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Text('PUP CSE RESULT',style: TextStyle(fontSize: 40),),
       ),
