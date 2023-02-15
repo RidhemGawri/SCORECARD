@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ResultViewScreen extends StatelessWidget {
-  const ResultViewScreen({Key? key}) : super(key: key);
+  int index;
+   ResultViewScreen({Key? key,required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("View result"),
+        title:  Text("SEMESTER $index"),
       ),
       body: Column(children: [
         CachedNetworkImage(

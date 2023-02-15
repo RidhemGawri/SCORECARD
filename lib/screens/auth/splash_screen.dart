@@ -1,27 +1,70 @@
-import 'package:flutter/material.dart';
-import 'package:resultproject/services/splash_services.dart';
+import 'dart:async';
 
-class Splashscreen extends StatefulWidget {
-  const Splashscreen({super.key});
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../home/all_branch_screen.dart';
+
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<Splashscreen> createState() => _SplashscreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashscreenState extends State<Splashscreen> {
-  SplashServices splashscreen = SplashServices();
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
+    Timer(
+        const Duration(milliseconds: 1000),
+            () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AllBranchScreen(),
+            )));
     super.initState();
-    splashscreen.isActive(context);
   }
 
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Text('PUP CSE RESULT',style: TextStyle(fontSize: 40),),
-      ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              richText(context),
+
+            ],
+          )),
     );
   }
+}
+
+Widget richText(context) {
+  return Text.rich(
+    TextSpan(
+      style: GoogleFonts.inter(
+        fontSize: MediaQuery.of(context).size.width * 0.05,
+        color: const Color(0xFF21899C),
+        letterSpacing: 2.000000061035156,
+      ),
+      children: const [
+        TextSpan(
+          text: 'PUNJABI UNIVERSITY ',
+          style: TextStyle(
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+        TextSpan(
+          text: 'PATIALA',
+          style: TextStyle(
+            color: Color(0xFFFE9879),
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+      ],
+    ),
+  );
 }
