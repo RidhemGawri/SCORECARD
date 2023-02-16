@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../home/all_branch_screen.dart';
+import '../home/home.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
             () => Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const AllBranchScreen(),
+              builder: (context) => const HomePage(),
             )));
     super.initState();
   }

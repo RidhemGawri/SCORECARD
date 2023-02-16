@@ -63,6 +63,8 @@ class BuildCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        // height: hsize*0.5,
+        // width: wsize*0.45,
         decoration: const BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -70,10 +72,7 @@ class BuildCard extends StatelessWidget {
               color: Colors.black,
               blurRadius: 2.0, // soften the shadow
               spreadRadius: -2.0, //extend the shadow
-              offset: Offset(
-                -2.0, // Move to right 2  horizontally
-                2.0, // Move to bottom 2 Vertically
-              ),
+
             )
           ],
           borderRadius: BorderRadius.all(

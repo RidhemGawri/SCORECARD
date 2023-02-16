@@ -10,6 +10,9 @@ class ResultViewScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title:  Text("SEMESTER $index"),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.download))
+        ],
       ),
       body: Column(children: [
         CachedNetworkImage(
