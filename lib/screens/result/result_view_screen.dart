@@ -1,22 +1,30 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:resultproject/provider/cse_result_provider.dart';
+import 'package:resultproject/screens/result/pdf_view_screen.dart';
 
-class ResultViewScreen extends StatelessWidget {
+import '../../widgets/download_pdf.dart';
+
+class ResultViewScreen extends ConsumerWidget {
   int index;
    ResultViewScreen({Key? key,required this.index}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
+    final cseprovider=ref.watch(resultProvider);
     return Scaffold(
       appBar: AppBar(
-        title:  Text("SEMESTER $index"),
+        title:  Text(cseprovider.semester[index].title),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.download))
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const PdfViewScreen(),));
+          }, icon: const Icon(Icons.download))
         ],
       ),
       body: Column(children: [
         CachedNetworkImage(
-          imageUrl: "https://firebasestorage.googleapis.com/v0/b/ucoe-result.appspot.com/o/cse%2FScreenshot%202023-02-15%20181155.png?alt=media&token=51e9fb0d-a16b-4bc6-8d95-cb73c533aa66",
+          imageUrl: cseprovider.semester[index].img,
           fit: BoxFit.fill,
           progressIndicatorBuilder: (context, url, downloadProgress) =>
               Center(

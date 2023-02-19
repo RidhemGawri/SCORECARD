@@ -61,7 +61,7 @@ class AddResultScreen extends StatelessWidget {
             onChanged: (String? newValue) {
               // provider.changeCurrent(newValue);
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder()
             ),
           ),

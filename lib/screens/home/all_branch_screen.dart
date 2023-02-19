@@ -3,36 +3,77 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:resultproject/config/config.dart';
 import 'package:resultproject/screens/home/roll_number_screen.dart';
 
+import '../../admin/screens/admin_home_page.dart';
+import '../../widgets/logout_dialogue.dart';
+
 class AllBranchScreen extends StatelessWidget {
   const AllBranchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("All Branches")),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.builder(
-            itemCount: 5,
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RollNumberScreen(branch: branches[index]),
-                        ));
-                  },
-                  child: BuildCard(
-                    text: branches[index],
-                    fullname: fullname[index],
-                  ));
-            },
+    return WillPopScope(
+      onWillPop: () async {
+        final shouldPop = await dialogBox(context);
+        return shouldPop!;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            leading: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                  child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.fill,
+              )),
+            ),
+            title: const Text("All Branches"),
+            actions: [
+              PopupMenuButton(
+                onSelected: (value) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                        const AdminHomePage(),
+                      ));
+                },
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: 1,
+                    child: Text("Sign in as Admin"),
+                  ),
+                ],
+                elevation: 2,
+              ),
+            ],
+          ),
+          body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.builder(
+                itemCount: 5,
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  RollNumberScreen(branch: branches[index]),
+                            ));
+                      },
+                      child: BuildCard(
+                        text: branches[index],
+                        fullname: fullname[index],
+                      ));
+                },
+              ),
+            ),
           ),
         ),
       ),
@@ -58,8 +99,8 @@ class BuildCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wsize=MediaQuery.of(context).size.width;
-    final hsize=MediaQuery.of(context).size.height;
+    final wsize = MediaQuery.of(context).size.width;
+    final hsize = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -72,7 +113,6 @@ class BuildCard extends StatelessWidget {
               color: Colors.black,
               blurRadius: 2.0, // soften the shadow
               spreadRadius: -2.0, //extend the shadow
-
             )
           ],
           borderRadius: BorderRadius.all(
@@ -86,13 +126,11 @@ class BuildCard extends StatelessWidget {
                 style: GoogleFonts.lato(
                     color: AppConfig.blackColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: wsize*0.05)),
+                    fontSize: wsize * 0.05)),
             Center(
                 child: Text(
               fullname,
-              style: GoogleFonts.lato(
-                fontSize: wsize*0.035
-              ),
+              style: GoogleFonts.lato(fontSize: wsize * 0.035),
               textAlign: TextAlign.center,
             )),
           ],
