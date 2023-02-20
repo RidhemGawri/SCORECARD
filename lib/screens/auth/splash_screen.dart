@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../home/all_branch_screen.dart';
+//import '../home/home.dart';
+
 
 
 class SplashScreen extends StatefulWidget {
