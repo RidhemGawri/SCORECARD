@@ -1,7 +1,11 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:resultproject/config/config.dart';
+
+
 import 'package:resultproject/screens/home/semester_screen.dart';
 
 import '../../provider/cse_result_provider.dart';
@@ -14,14 +18,38 @@ class RollNumberScreen extends ConsumerWidget {
   TextEditingController controller = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey();
   @override
+
   Widget build(BuildContext context,WidgetRef ref) {
     final cseprovider=ref.watch(resultProvider);
+
+  triggerNotification(){
+    AwesomeNotifications().createNotification(
+      content:NotificationContent(
+        id: 10, 
+        channelKey: 'basic_channel',
+        title: 'Simple_notification',
+        body: 'Simple',
+        ),
+      );
+  }
+  Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         // automaticallyImplyLeading: false,
         title:  Text('PUP $branch RESULT'),
         shadowColor: Colors.blueGrey,
+        actions: [
+          IconButton(
+            onPressed: triggerNotification,
+            icon: Icon(Icons.notifications),
+          ),
+          SizedBox(
+            width: 10,
+          )
+        ],
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:resultproject/provider/cse_result_provider.dart';
 import 'package:resultproject/screens/result/result_view_screen.dart';
@@ -97,6 +98,8 @@ class Semester extends ConsumerWidget {
                 )
               ],
             )),
+
+
       ),
     );
   }

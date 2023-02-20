@@ -7,6 +7,7 @@ import '../home/all_branch_screen.dart';
 //import '../home/home.dart';
 
 
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
