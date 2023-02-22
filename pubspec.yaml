@@ -61,6 +61,7 @@ dependencies:
 #  syncfusion_flutter_pdf: ^20.4.50
   pdf: ^3.8.4
   printing: ^5.7.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

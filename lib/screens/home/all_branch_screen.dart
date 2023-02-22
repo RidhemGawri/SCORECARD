@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resultproject/config/config.dart';
-import 'package:resultproject/screens/home/Signup_screen.dart';
+import 'package:resultproject/screens/auth/login_screen.dart';
 import 'package:resultproject/screens/home/roll_number_screen.dart';
 
 
@@ -36,7 +36,7 @@ class AllBranchScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignUpScreen(),
+                        builder: (context) => LoginScreen(),
                        // const AdminHomePage(),
                       ));
                 },

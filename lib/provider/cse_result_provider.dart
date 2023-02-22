@@ -43,6 +43,8 @@ class ResultService extends ChangeNotifier {
     }
 
   }
+
+
 }
 
 final resultProvider = ChangeNotifierProvider(

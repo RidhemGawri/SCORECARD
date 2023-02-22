@@ -50,6 +50,3 @@ class Button extends StatelessWidget {
   }
 }
 
-// Widget Button(Size size, title, titlecolor, buttoncolor, ontap) {
-//   return
-// }

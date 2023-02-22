@@ -4,13 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TextFieldButton extends StatelessWidget {
   String lable;
-   TextFieldButton({Key? key,required this.lable}) : super(key: key);
+  TextEditingController controller;
+  var icon;
+   TextFieldButton({Key? key,required this.lable,required this.controller,required this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
     return TextFormField(
-      // keyboardType: TextInputType.phone,
+      controller: controller,
       style: GoogleFonts.inter(
         fontSize: 16.0,
         color: const Color(0xFF15224F),
@@ -18,17 +20,15 @@ class TextFieldButton extends StatelessWidget {
       maxLines: 1,
       cursorColor: const Color(0xFF15224F),
       decoration: InputDecoration(
+        prefixIcon: Icon(icon),
           labelText: lable,
           labelStyle: GoogleFonts.inter(
             fontSize: 12.0,
             color: const Color(0xFF969AA8),
           ),
           border:const OutlineInputBorder()),
+
+
     );
   }
 }
-
-
-// Widget textfieldbtn(Size size, lable, controlname, validation, obsecure) {
-//   return
-// }
