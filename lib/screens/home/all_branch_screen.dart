@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:resultproject/config/config.dart';
+import 'package:resultproject/screens/home/Signup_screen.dart';
 import 'package:resultproject/screens/home/roll_number_screen.dart';
 
 
@@ -35,8 +36,8 @@ class AllBranchScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                        const AdminHomePage(),
+                        builder: (context) => SignUpScreen(),
+                       // const AdminHomePage(),
                       ));
                 },
                 itemBuilder: (context) => [

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:resultproject/screens/auth/splash_screen.dart';
+// import 'package:resultproject/services/local_notification_services.dart';
+
+
 void main() async {
   AwesomeNotifications().initialize(
     null,
@@ -17,8 +20,9 @@ void main() async {
   );
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+  // LocalNotificationServices.initialize;
   runApp(const ProviderScope(child: MyApp()));
-
 }
 
 class MyApp extends StatefulWidget {
@@ -48,7 +52,6 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blueGrey,
       ),
       home: const SplashScreen(),
-
     );
   }
 }
