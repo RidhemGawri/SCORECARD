@@ -3,9 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:resultproject/services/local_notification_services.dart';
-
-
+import 'package:resultproject/screens/auth/splash_screen.dart';
 void main() async {
   AwesomeNotifications().initialize(
     null,
@@ -19,8 +17,6 @@ void main() async {
   );
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
-  LocalNotificationServices.initialize;
   runApp(const ProviderScope(child: MyApp()));
 
 }

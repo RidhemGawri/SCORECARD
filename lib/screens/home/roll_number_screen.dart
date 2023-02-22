@@ -32,8 +32,6 @@ class RollNumberScreen extends ConsumerWidget {
         ),
       );
   }
-  Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         // automaticallyImplyLeading: false,
