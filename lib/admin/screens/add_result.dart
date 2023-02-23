@@ -62,38 +62,12 @@ class AddResultScreen extends ConsumerWidget {
                           onTap: () async {
                             var i = await addresprovider.getImage(
                                 context, ImageSource.gallery);
-                            // showLoaderDialog(context);
-                            // i.toString().isEmpty
-                            //     ? ''
-                            //     : authprovider.updateProfile
-                            //     .control('img')
-                            //     .value =
-                            // await authprovider.uploadimage(
-                            //     authprovider.updateProfile
-                            //         .control('email')
-                            //         .value,
-                            //     context,
-                            //     i);
-                            // Navigator.pop(context);
                           },
                         ),
                         GestureDetector(
                           onTap: () async {
                             var i = await addresprovider.getImage(
                                 context, ImageSource.camera);
-                            // showLoaderDialog(context);
-                            // i.toString().isEmpty
-                            //     ? ''
-                            //     : authprovider.updateProfile
-                            //     .control('img')
-                            //     .value =
-                            // await authprovider.uploadimage(
-                            //     authprovider.updateProfile
-                            //         .control('email')
-                            //         .value,
-                            //     context,
-                            //     i);
-                            // Navigator.pop(context);
                           },
                           child: Card(
                             child: ListTile(
@@ -124,8 +98,10 @@ class AddResultScreen extends ConsumerWidget {
                       )
                     ],
                   ),
-                  child:  Center(
-                      child: addresprovider.uplaodedImage.isEmpty ? const Text("Choose Image") :const Text("Image Selected Successfully")),
+                  child: Center(
+                      child: addresprovider.uplaodedImage.isEmpty
+                          ? const Text("Choose Image")
+                          : const Text("Image Selected Successfully")),
                 ),
               ),
             ),
@@ -178,18 +154,24 @@ class AddResultScreen extends ConsumerWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Button(
+              child:addresprovider.imload ? const Center(child: CircularProgressIndicator()) : Button(
                   buttoncolor: Colors.black,
                   title: "Save",
                   titlecolor: Colors.white,
                   onTap: () {
-                    if (formkey.currentState!.validate()) {
-                      print('valid');
-                      print(controller.text);
-                      print(addresprovider.sem);
-                      print(addresprovider.uplaodedImage);
+                    if (formkey.currentState!.validate() &&
+                        addresprovider.uplaodedImage.isNotEmpty) {
+
+                      addresprovider.uploadimage(
+                          controller.text,
+                          context,
+                          addresprovider.uplaodedImage,
+                          addresprovider.sem,
+                          branch);
+                      Navigator.pop(context);
                     } else {
-                      showErrorToast(message: "Fill the form first",context: context);
+                      showErrorToast(
+                          message: "Fill the form first", context: context);
                     }
                   }),
             )
@@ -201,12 +183,36 @@ class AddResultScreen extends ConsumerWidget {
 }
 
 List allSem = [
-  "SEM I",
-  "SEM II",
-  "SEM III",
-  "SEM IV",
-  "SEM V",
-  "SEM VI",
-  "SEM VII",
-  "SEM VIII",
+  "SEMESTER I",
+  "SEMESTER II",
+  "SEMESTER III",
+  "SEMESTER IV",
+  "SEMESTER V",
+  "SEMESTER VI",
+  "SEMESTER VII",
+  "SEMESTER VIII",
 ];
+
+showLoaderDialog(BuildContext context) {
+  AlertDialog alert = AlertDialog(
+    backgroundColor: Colors.white,
+    content: Row(
+      children: [
+        const CircularProgressIndicator(color: Colors.black),
+        Container(
+            margin: const EdgeInsets.only(left: 7),
+            child: const Text(
+              "uploading...",
+              style: TextStyle(color: Colors.black),
+            )),
+      ],
+    ),
+  );
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return WillPopScope(onWillPop: () async => false, child: alert);
+    },
+  );
+}

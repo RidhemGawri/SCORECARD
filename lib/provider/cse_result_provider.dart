@@ -32,17 +32,6 @@ class ResultService extends ChangeNotifier {
     }
   }
 
-  addSemData(rollno,branch,sem,img)async{
-    try{
-      await _firebaseFirestore.collection(branch).doc(rollno).collection(rollno).doc(sem).set({
-        "title":sem,
-        "img":img
-      });
-    }catch(e){
-      print(e);
-    }
-
-  }
 
 
 }

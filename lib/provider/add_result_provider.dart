@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../admin/screens/add_result.dart';
 import '../services/toast_service.dart';
 
 class AddResult extends ChangeNotifier {
@@ -18,42 +19,44 @@ class AddResult extends ChangeNotifier {
     notifyListeners();
   }
 
-  uploadToDatabase(branch,rollno,image,semester) {
+  uploadToDatabase(branch, rollno, image, semester) {
     _firebaseFirestore
         .collection(branch)
         .doc(rollno)
         .collection(rollno)
         .doc(semester)
-        .set({
-      "img":image,
-      "title":semester
-    });
+        .set({"img": image, "title": semester});
   }
 
   File? imageFile;
+  bool imload = false;
+
+  changeLoad(value) {
+    imload = value;
+    notifyListeners();
+  }
 
   //uplaod image
-  uploadimage(rollno, context, image, sem) async {
+  uploadimage(rollno, context, image, sem, branch) async {
     var imageUrl = '';
+    changeLoad(true);
+    // showLoaderDialog(context);
     try {
       Reference reference =
           await FirebaseStorage.instance.ref('papers').child(rollno + sem);
       UploadTask uploadTask = reference.putFile(File(image));
       TaskSnapshot snapshot = await uploadTask;
       if (snapshot.state == TaskState.success) {
-        // print("success");
-        Navigator.pop(context);
-        showSuccessToast(
-            message: "Nice! Your Image has been Selected Successfully",
-            context: context);
+        imageUrl = await snapshot.ref.getDownloadURL();
+        await uploadToDatabase(branch, rollno, imageUrl, sem);
       }
-      imageUrl = await snapshot.ref.getDownloadURL();
-      print(imageUrl);
     } catch (e) {
       imageUrl = '';
+      showErrorToast(context: context, message: "Failed to upload");
       print(e);
     }
-    return imageUrl;
+    changeLoad(false);
+    // Navigator.pop(context);
   }
 
 //pick image
