@@ -19,83 +19,63 @@ class RollNumberScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cseprovider = ref.watch(resultProvider);
-
-    triggerNotification() {
-      AwesomeNotifications().createNotification(
-        content: NotificationContent(
-          id: 10,
-          channelKey: 'basic_channel',
-          title: 'Simple_notification',
-          body: 'Simple',
-        ),
-      );}
-      return Scaffold(
-        appBar: AppBar(
-          // automaticallyImplyLeading: false,
-          title: Text('PUP $branch RESULT'),
-          shadowColor: Colors.blueGrey,
-          actions: [
-            IconButton(
-              onPressed: triggerNotification,
-              icon: Icon(Icons.notifications),
-            ),
-            SizedBox(
-              width: 10,
-            )
-          ],
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Form(
-            key: formkey,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                    controller: controller,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp(r'\d')),
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "roll number can't be empty";
-                      } else if (value.length != 8) {
-                        return 'Roll number is not correct';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(
-                        labelText: "Enter Roll number",
-                        border: OutlineInputBorder()
-                        // hintText: "whatever you want",
-                        )),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                Button(
-                  onTap: () async {
-                    if (formkey.currentState!.validate()) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ViewAllSem(
-                                rollno: controller.text, branch: branch),
-                          ));
+    return Scaffold(
+      appBar: AppBar(
+        // automaticallyImplyLeading: false,
+        title: Text('PUP $branch RESULT'),
+        shadowColor: Colors.blueGrey,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: formkey,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                  controller: controller,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'\d')),
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "roll number can't be empty";
+                    } else if (value.length != 8) {
+                      return 'Roll number is not correct';
                     }
+                    return null;
                   },
-                  buttoncolor: AppConfig.primaryColor,
-                  title: 'Submit',
-                  titlecolor: Colors.white,
-                ),
-              ],
-            ),
+                  decoration: const InputDecoration(
+                      labelText: "Enter Roll number",
+                      border: OutlineInputBorder()
+                      // hintText: "whatever you want",
+                      )),
+              const SizedBox(
+                height: 20.0,
+              ),
+              Button(
+                onTap: () async {
+                  if (formkey.currentState!.validate()) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ViewAllSem(
+                              rollno: controller.text, branch: branch),
+                        ));
+                  }
+                },
+                buttoncolor: AppConfig.primaryColor,
+                title: 'Submit',
+                titlecolor: Colors.white,
+              ),
+            ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
-    
+}

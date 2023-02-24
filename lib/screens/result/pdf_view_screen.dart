@@ -4,13 +4,14 @@ import 'package:printing/printing.dart';
 import '../../widgets/download_pdf.dart';
 
 class PdfViewScreen extends StatelessWidget {
-  const PdfViewScreen({Key? key}) : super(key: key);
+  var img;
+   PdfViewScreen({Key? key,required this.img}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       body: PdfPreview(
-        build: (context) => convertImageToPDF(''),
+        build: (context) => convertImageToPDF(img),
       )
     );
   }
