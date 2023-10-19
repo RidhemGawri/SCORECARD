@@ -1,7 +1,6 @@
 # resultproject
 
-A new Flutter project.
-
+An app designed to offer results to every student, it was a university project given to us by our instructor.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
